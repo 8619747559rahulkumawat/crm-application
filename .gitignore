@@ -7,7 +7,7 @@ yarn-error.log*
 # Production builds
 /backend/node_modules/
 /frontend/node_modules/
-/frontend/build/
+# /frontend/build/  # Commented out for GitHub Pages
 /frontend/.env.local
 /frontend/.env.development.local
 /frontend/.env.test.local
