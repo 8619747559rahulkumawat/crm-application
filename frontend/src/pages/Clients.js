@@ -21,10 +21,6 @@ const Clients = () => {
   const [dateFilter, setDateFilter] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
-  useEffect(() => {
-    fetchClients();
-  }, [fetchClients]);
-
   const fetchClients = useCallback(async () => {
     try {
       setLoading(true);
@@ -43,6 +39,10 @@ const Clients = () => {
       setLoading(false);
     }
   }, [searchTerm, statusFilter, leadSourceFilter, dateFilter]);
+
+  useEffect(() => {
+    fetchClients();
+  }, [fetchClients]);
 
   const deleteClient = async (clientId) => {
     if (window.confirm('Are you sure you want to delete this client?')) {
