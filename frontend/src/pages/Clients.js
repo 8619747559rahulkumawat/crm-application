@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
 import {
@@ -23,9 +23,9 @@ const Clients = () => {
 
   useEffect(() => {
     fetchClients();
-  }, [searchTerm, statusFilter, leadSourceFilter, dateFilter, fetchClients]);
+  }, [fetchClients]);
 
-  const fetchClients = async () => {
+  const fetchClients = useCallback(async () => {
     try {
       setLoading(true);
       const params = new URLSearchParams();
@@ -42,7 +42,7 @@ const Clients = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [searchTerm, statusFilter, leadSourceFilter, dateFilter]);
 
   const deleteClient = async (clientId) => {
     if (window.confirm('Are you sure you want to delete this client?')) {
