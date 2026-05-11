@@ -10,7 +10,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: MONGODB_URI
-        value: "mongodb+srv://rahulkumar8600:wQvzL8XHx8mF4HdS@cluster0.abcde.mongodb.net/crm?retryWrites=true&w=majority"
+        value: "mongodb+srv://rahulkumar8600:wQvzL8XHx8mF4HdS@cluster0.mongodb.net/crm?retryWrites=true&w=majority"
       - key: JWT_SECRET
         value: "your_super_secure_jwt_secret_key_for_production_change_this"
       - key: PORT
