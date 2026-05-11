@@ -27,7 +27,7 @@ const ClientDetail = () => {
 
   useEffect(() => {
     fetchClientData();
-  }, [id]);
+  }, [id, fetchClientData]);
 
   const fetchClientData = async () => {
     try {

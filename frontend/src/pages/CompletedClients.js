@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
-import { ArrowLeft, CheckCircle, Phone, MapPin, Calendar, Clock } from 'lucide-react';
+import { ArrowLeft, CheckCircle, MapPin, Calendar, Clock } from 'lucide-react';
 
 const CompletedClients = () => {
   const navigate = useNavigate();

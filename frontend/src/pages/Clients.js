@@ -8,11 +8,8 @@ import {
   Filter,
   Phone,
   MapPin,
-  Pencil,
-  Calendar,
   Edit,
-  Trash2,
-  Eye
+  Trash2
 } from 'lucide-react';
 
 const Clients = () => {
@@ -26,7 +23,7 @@ const Clients = () => {
 
   useEffect(() => {
     fetchClients();
-  }, [searchTerm, statusFilter, leadSourceFilter, dateFilter]);
+  }, [searchTerm, statusFilter, leadSourceFilter, dateFilter, fetchClients]);
 
   const fetchClients = async () => {
     try {
