@@ -39,5 +39,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://your-app-name.herokuapp.com"
+  "proxy": "https://your-app-name.herokuapp.com",
+  "homepage": "https://8619747559rahulkumawat.github.io/crm-application"
 }
