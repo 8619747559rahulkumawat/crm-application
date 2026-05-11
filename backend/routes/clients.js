@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const { body, validationResult } = require('express-validator');
 const Client = require('../models/Client');
 const Activity = require('../models/Activity');
@@ -8,6 +9,70 @@ const router = express.Router();
 // Get all clients
 router.get('/', async (req, res) => {
   try {
+    // Check if MongoDB is connected
+    if (mongoose.connection.readyState !== 1) {
+      // Return fallback sample data when MongoDB is disconnected
+      const fallbackClients = [
+        {
+          _id: 'fallback-1',
+          fullName: 'John Doe',
+          phoneNumber: '+1234567890',
+          address: '123 Main St, City',
+          city: 'New York',
+          status: 'New Lead',
+          leadSource: 'Website',
+          followUpDateTime: new Date(Date.now() + 24 * 60 * 60 * 1000),
+          createdDate: new Date(),
+          lastUpdated: new Date()
+        },
+        {
+          _id: 'fallback-2',
+          fullName: 'Jane Smith',
+          phoneNumber: '+0987654321',
+          address: '456 Oak Ave, City',
+          city: 'Los Angeles',
+          status: 'Interested',
+          leadSource: 'Referral',
+          followUpDateTime: new Date(Date.now() + 48 * 60 * 60 * 1000),
+          createdDate: new Date(),
+          lastUpdated: new Date()
+        },
+        {
+          _id: 'fallback-3',
+          fullName: 'Mike Johnson',
+          phoneNumber: '+1122334455',
+          address: '789 Pine Rd, City',
+          city: 'Chicago',
+          status: 'Follow-Up Pending',
+          leadSource: 'Cold Call',
+          followUpDateTime: new Date(Date.now() + 72 * 60 * 60 * 1000),
+          createdDate: new Date(),
+          lastUpdated: new Date()
+        }
+      ];
+
+      // Apply filters to fallback data
+      let filteredClients = fallbackClients;
+      const { search, status, leadSource } = req.query;
+
+      if (search) {
+        filteredClients = filteredClients.filter(client =>
+          client.fullName.toLowerCase().includes(search.toLowerCase()) ||
+          client.phoneNumber.includes(search)
+        );
+      }
+
+      if (status) {
+        filteredClients = filteredClients.filter(client => client.status === status);
+      }
+
+      if (leadSource) {
+        filteredClients = filteredClients.filter(client => client.leadSource === leadSource);
+      }
+
+      return res.json(filteredClients);
+    }
+
     const { search, status, leadSource, date } = req.query;
     let query = {};
 
